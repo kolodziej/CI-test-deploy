@@ -11,8 +11,8 @@ env:
     - CONFIG=Release
 
 script:
-  - wget https://kolodziej.in/index.html
-  - tar czf index.html Data_$CONFIG_$TRAVIS_BUILD_NUMBER.tar.bz2
+  - wget https://ricochet.im/releases/1.1.0/ricochet-1.1.0-static-x86_64.tar.bz2
+  - tar czf ricochet-1.1.0-static-x86_64.tar.bz2 "Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2"
 
 after_success:
-  - "curl --ftp-create-dirs -T Data_$CONFIG_$TRAVIS_BUILD_NUMBER.tar.bz2 -u $FTPDATA ftp://k1.kolodziej.in/builds/kolodziej"
+  - "curl --ftp-create-dirs -T "Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2" -u $FTPDATA ftp://k1.kolodziej.in/builds/kolodziej"
