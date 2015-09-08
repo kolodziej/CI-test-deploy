@@ -16,4 +16,4 @@ script:
   - tar czf Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2 ricochet-1.1.0-static-x86_64.tar.bz2
 
 after_success:
-  - "curl --ftp-create-dirs -T Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2 -u ricochet:$FTPPASS ftp://k1.kolodziej.in/"
+  - "curl --ftp-create-dirs -T Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2 -u ricochet:$FTPPASS ftp://k1.kolodziej.in/builds/kolodziej/"
