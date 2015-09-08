@@ -5,14 +5,14 @@ os:
 
 env:
   global:
-    ftpdata:
-      secure: "1BVQ6ltWW6ZYRrcHoax60Pys4B0mLigxpscKRGwKe5m5iq0lEdbp8l+Fa7QwEqsy7ws8lL+FV8/Ol4zBBadlg4GHA5bTXq5Tdn9gbDxWdros5axsgoUyJPRHrFGoMFxTCEkNyZjypnVWO7nzgzvKXwEcbAQt1L6QPtzrkaQoYC8CkkcqK8G8ukfl+x45yCvuKQExHqI3Pz/444J1ikS0zQgmmbhp0z9T3sdu+vIsAUa1WJFo9lkjYjTQ74qFp7zN+7BIxQAcDi63I2NI99tl6Gqqh0+eBBdWCES6eKWRBpiclDkTNu9ntpLOLrWbhncFg2nZwy7ahK3H1LdyyqMooB9B3ZCS+s+MtSbLHpM+6t6SvX1vPHzPvqf5dazxcuO3I6I5eQJBV/oSDobCg0+aFo4cALaPDwhwCzhIW4pb4ajCDmVHu5DwbhCYazxmJ+oFZkG10imXyclBnMYlvghQA8VkQrqzfzHjlCz/S0lzfR303vauZXOY8SADVPs3VeF1Cezxm51CSTF4IfX65iLHeAYD8pA45xguWZSgUjRl5JAgHkm+r4y71jTVblZQcpZtdQbPCGzvZOAH2qVYndayZFF97LQbqFK9Aogbh2rrbBxgfeXZXTVg6KysI69lQn5/Ln0Nfh1Bqg3Emn4bBW283aI+ULZmmJBCMns3NxqETGE="
-  - CONFIG=Debug
-  - CONFIG=Release
+    -  secure: "1BVQ6ltWW6ZYRrcHoax60Pys4B0mLigxpscKRGwKe5m5iq0lEdbp8l+Fa7QwEqsy7ws8lL+FV8/Ol4zBBadlg4GHA5bTXq5Tdn9gbDxWdros5axsgoUyJPRHrFGoMFxTCEkNyZjypnVWO7nzgzvKXwEcbAQt1L6QPtzrkaQoYC8CkkcqK8G8ukfl+x45yCvuKQExHqI3Pz/444J1ikS0zQgmmbhp0z9T3sdu+vIsAUa1WJFo9lkjYjTQ74qFp7zN+7BIxQAcDi63I2NI99tl6Gqqh0+eBBdWCES6eKWRBpiclDkTNu9ntpLOLrWbhncFg2nZwy7ahK3H1LdyyqMooB9B3ZCS+s+MtSbLHpM+6t6SvX1vPHzPvqf5dazxcuO3I6I5eQJBV/oSDobCg0+aFo4cALaPDwhwCzhIW4pb4ajCDmVHu5DwbhCYazxmJ+oFZkG10imXyclBnMYlvghQA8VkQrqzfzHjlCz/S0lzfR303vauZXOY8SADVPs3VeF1Cezxm51CSTF4IfX65iLHeAYD8pA45xguWZSgUjRl5JAgHkm+r4y71jTVblZQcpZtdQbPCGzvZOAH2qVYndayZFF97LQbqFK9Aogbh2rrbBxgfeXZXTVg6KysI69lQn5/Ln0Nfh1Bqg3Emn4bBW283aI+ULZmmJBCMns3NxqETGE="
+  matrix:
+    - CONFIG=Debug
+    - CONFIG=Release
 
 script:
   - wget https://kolodziej.in/index.html
   - tar czf index.html Data_$CONFIG_$TRAVIS_BUILD_NUMBER.tar.bz2
 
 after_success:
-  - "curl --ftp-create-dirs -T git@github.com:kolodziej/CI-test-deploy.git -u $ftpdata ftp://k1.kolodziej.in/builds/kolodziej"
+  - "curl --ftp-create-dirs -T Data_$CONFIG_$TRAVIS_BUILD_NUMBER.tar.bz2 -u $FTPDATA ftp://k1.kolodziej.in/builds/kolodziej"
