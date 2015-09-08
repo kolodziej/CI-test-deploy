@@ -14,6 +14,8 @@ env:
 script:
   - wget https://ricochet.im/releases/1.1.0/ricochet-1.1.0-static-x86_64.tar.bz2
   - tar czf Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2 ricochet-1.1.0-static-x86_64.tar.bz2
+  - mkdir deploy
+  - mv Data* deploy/
 
 after_success:
-  - "curl --ftp-create-dirs -T Data_${CONFIG}_${TRAVIS_BUILD_NUMBER}.tar.bz2 -u ricochet:$FTPPASS ftp://k1.kolodziej.in/builds/kolodziej/"
+  - "curl --ftp-create-dirs -T `ls deploy/*.bz2` -u ricochet:$FTPPASS ftp://k1.kolodziej.in/builds/kolodziej/"
